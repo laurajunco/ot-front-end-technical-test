@@ -61,6 +61,7 @@ class App extends Component {
     } else {
       return (
         <div>
+          <h1> Genes associated with lung carcinoma </h1>
           <DataTable targets={targets}/>
         </div>
       );

@@ -1,27 +1,71 @@
 import React, { Component } from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Row from './Row'
+import { TablePagination } from '@material-ui/core';
+
 
 class DataTable extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      targets: props.targets
+      targets: props.targets,
+      page: 0,
+      rowsPerPage:5
     };
   }
 
-  componentDidMount() {
-    console.log(this.state.targets)
+  handleChangePage = (event, newPage) => {
+    this.setState({
+      page:newPage
+    });
+
+  };
+  
+  renderRows() {
+    const page = this.state.page;
+    const rowsPerPage = this.state.rowsPerPage
+    const targets = this.state.targets
+
+    return(
+      targets.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(target => {
+        return(<Row target={target} key={target.id}/>)
+      })
+    )
   }
 
   render() {
+   
     return(
-        <ul>
-          {this.state.targets.map(target => (
-            <li key={target.gene_id}>
-              {target.symbol} – {target.gene_id}
-            </li>
-          ))}
-        </ul>
+      <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Symbol</TableCell>
+            <TableCell>Gene ID</TableCell>
+            <TableCell>Gene Name</TableCell>
+            <TableCell>Overall Association Score</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+           {this.renderRows()}
+        </TableBody>
+        <TablePagination
+         rowsPerPageOptions={[5]}
+          count={9}
+          page={0}
+          rowsPerPage={5}
+          onChangePage={this.handleChangePage}
+        />
+      </Table>
+    </TableContainer>
     )
   }
 }
