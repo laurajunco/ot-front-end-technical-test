@@ -25,9 +25,8 @@ class DataTable extends Component {
     this.setState({
       page:newPage
     });
-
   };
-  
+
   renderRows() {
     const page = this.state.page;
     const rowsPerPage = this.state.rowsPerPage
@@ -35,13 +34,13 @@ class DataTable extends Component {
 
     return(
       targets.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(target => {
-        return(<Row target={target} key={target.id}/>)
+        return(<Row target={target} key={target.gene_id}/>)
       })
     )
   }
 
   render() {
-   
+  
     return(
       <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -58,10 +57,10 @@ class DataTable extends Component {
            {this.renderRows()}
         </TableBody>
         <TablePagination
-         rowsPerPageOptions={[5]}
-          count={9}
-          page={0}
-          rowsPerPage={5}
+         rowsPerPageOptions={[this.state.rowsPerPage]}
+          count={this.state.targets.length}
+          page={this.state.page}
+          rowsPerPage={this.state.rowsPerPage}
           onChangePage={this.handleChangePage}
         />
       </Table>
