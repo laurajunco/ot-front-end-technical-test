@@ -5,8 +5,8 @@ import IconButton from '@material-ui/core/IconButton';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
 
 
 
@@ -34,7 +34,7 @@ class Row extends Component {
       <TableRow className="target">
         <TableCell>
           <IconButton aria-label="expand row" size="small" onClick={() => this.setOpen(!this.state.open)}>
-            {this.state.open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {this.state.open ? <RemoveIcon color="primary"/> : <AddIcon color="primary"/> }
           </IconButton>
         </TableCell>
         <TableCell>{target.symbol}</TableCell>

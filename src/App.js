@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./App.css";
 import {descending} from "d3-array";
 import DataTable from './DataTable';
+import Typography from '@material-ui/core/Typography';
 
 class App extends Component {
 
@@ -32,8 +33,6 @@ class App extends Component {
           }
 
           targets.sort((a, b) => descending(a.score, b.score));
-          console.log(targets)
-
           
           this.setState({
             isLoaded: true,
@@ -61,7 +60,9 @@ class App extends Component {
     } else {
       return (
         <div>
-          <h1> Genes associated with lung carcinoma </h1>
+          <Typography variant="h4" color="primary" gutterBottom="true">
+            Genes associated with lung carcinoma
+          </Typography> 
           <DataTable targets={targets}/>
         </div>
       );
