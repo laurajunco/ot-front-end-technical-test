@@ -60,7 +60,7 @@ class App extends Component {
     } else {
       return (
         <div>
-          <Typography variant="h4" color="primary" gutterBottom="true">
+          <Typography variant="h4" color="primary" gutterBottom>
             Genes associated with lung carcinoma
           </Typography> 
           <DataTable targets={targets}/>

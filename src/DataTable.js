@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Row from './Row'
+import TableFooter from '@material-ui/core/TableFooter';
 import { TablePagination } from '@material-ui/core';
 
 
@@ -43,27 +44,33 @@ class DataTable extends Component {
   
     return(
       <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Symbol</TableCell>
-            <TableCell>Gene ID</TableCell>
-            <TableCell>Gene Name</TableCell>
-            <TableCell>Overall Association Score</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-           {this.renderRows()}
-        </TableBody>
-        <TablePagination
-         rowsPerPageOptions={[this.state.rowsPerPage]}
-          count={this.state.targets.length}
-          page={this.state.page}
-          rowsPerPage={this.state.rowsPerPage}
-          onChangePage={this.handleChangePage}
-        />
-      </Table>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Symbol</TableCell>
+              <TableCell>Gene ID</TableCell>
+              <TableCell>Gene Name</TableCell>
+              <TableCell>Overall Association Score</TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {this.renderRows()}
+          </TableBody>
+
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                  rowsPerPageOptions={[this.state.rowsPerPage]}
+                  count={this.state.targets.length}
+                  page={this.state.page}
+                  rowsPerPage={this.state.rowsPerPage}
+                  onChangePage={this.handleChangePage}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
     </TableContainer>
     )
   }

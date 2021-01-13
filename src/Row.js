@@ -4,12 +4,10 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-
-
-
+import BarChart from './BarChart';
+import Grid from '@material-ui/core/Grid';
 
 class Row extends Component {
 
@@ -19,6 +17,8 @@ class Row extends Component {
       target: props.target,
       open: false
     };
+
+    this.renderDataViz = this.renderDataViz.bind(this);
   }
 
   setOpen(open) {
@@ -26,6 +26,20 @@ class Row extends Component {
       open: open
     })
   } 
+
+  renderDataViz() {
+
+    return(
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <BarChart buckets={this.state.target.datatypes}/>
+        </Grid>
+        <Grid item xs={6}>
+          <BarChart buckets={this.state.target.datatypes}/>
+        </Grid>
+      </Grid>
+    )
+  }
   
   render() {
     const target = this.state.target
@@ -43,12 +57,10 @@ class Row extends Component {
         <TableCell>{target.score}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Typography variant="h6" gutterBottom component="div">
-                Vis
-              </Typography>
+              {this.state.open ? this.renderDataViz: ""}
             </Box>
           </Collapse>
         </TableCell>
