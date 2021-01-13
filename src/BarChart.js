@@ -9,10 +9,12 @@ export default class D3Component extends Component {
 
     componentDidMount(){
       let element = this.ref.current;
-      let width = element.getBoundingClientRect().width
-      let height = width/1.5
-      let MARGIN = { TOP: 10, BOTTOM: 10, LEFT: 10, RIGHT: 10 }
+      let MARGIN = { TOP: 30, BOTTOM: 50, LEFT: 50, RIGHT: 30 }
+      let width = element.getBoundingClientRect().width - MARGIN.LEFT - MARGIN.RIGHT
+      let height = width - MARGIN.TOP - MARGIN.BOTTOM
       let buckets = this.props.buckets;
+
+      console.log(buckets);
       
       let g = d3.select(element)
         .append("svg")
@@ -39,13 +41,21 @@ export default class D3Component extends Component {
         .append("rect")
         .attr("x", d => x(d[0]))
         .attr("width", x.bandwidth)
-        .attr("fill", "grey")
+        .attr("fill", "#3f51b5")
         .attr("y", d => y(d[1]))
         .attr("height", d => height - y(d[1]))
 
-      console.log(buckets);
-      console.log(rects)
-    
+      //axis
+      let xAxisCall = d3.axisBottom(x);
+      let yAxisCall = d3.axisLeft(y);
+
+      let xAxisGroup = g.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(xAxisCall); 
+
+      let yAxisGroup = g.append("g")
+        .call(yAxisCall)
+
     }
 
     render(){
