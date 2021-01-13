@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "./App.css";
-import {descending} from "d3-array";
 import DataTable from './DataTable';
 import Typography from '@material-ui/core/Typography';
 
@@ -9,7 +8,7 @@ class App extends Component {
   state = {
     error: null,
     isLoaded: false,
-    targets: []
+    data: []
   };
 
   componentDidMount() {
@@ -17,30 +16,12 @@ class App extends Component {
     fetch("https://demo6922545.mockable.io")
       .then(res => res.json())
       .then(
-        (result) => {
-
-          //CLean and organize data
-          let data = result.data;
-          let targets = [];
-
-          for ( var i = 0; i < data.length; i++ ) {
-            targets[i] = {}
-            targets[i].symbol = data[i].target.gene_info.symbol
-            targets[i].gene_id = data[i].id
-            targets[i].name = data[i].target.gene_info.name
-            targets[i].datatypes = data[i].association_score.datatypes
-            targets[i].score = data[i].association_score.overall
-          }
-
-          targets.sort((a, b) => descending(a.score, b.score));
-          
+        (result) => {      
           this.setState({
             isLoaded: true,
-            targets: targets
+            data: result.data
           });
-        },
-        
-        (error) => {
+        },(error) => {
           this.setState({
             isLoaded: true,
             error
@@ -51,7 +32,7 @@ class App extends Component {
 
 
   renderDataTable() {
-    const { error, isLoaded, targets} = this.state;
+    const { error, isLoaded, data} = this.state;
     
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -63,7 +44,7 @@ class App extends Component {
           <Typography variant="h4" color="primary" gutterBottom>
             Genes associated with lung carcinoma
           </Typography> 
-          <DataTable targets={targets}/>
+          <DataTable data={data}/>
         </div>
       );
     }

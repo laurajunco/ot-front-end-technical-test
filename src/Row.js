@@ -14,7 +14,7 @@ class Row extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      target: props.target,
+      data: props.data,
       open: false
     };
 
@@ -28,21 +28,21 @@ class Row extends Component {
   } 
 
   renderDataViz() {
-
+    const data = this.state.data
     return(
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <BarChart buckets={this.state.target.datatypes}/>
+          <BarChart buckets={data.association_score.datatypes}/>
         </Grid>
         <Grid item xs={6}>
-          <BarChart buckets={this.state.target.datatypes}/>
+          <BarChart buckets={data.association_score.datatypes}/>
         </Grid>
       </Grid>
     )
   }
   
   render() {
-    const target = this.state.target
+    const data = this.state.data
     return(
       <React.Fragment>
       <TableRow className="target">
@@ -51,10 +51,10 @@ class Row extends Component {
             {this.state.open ? <RemoveIcon color="primary"/> : <AddIcon color="primary"/> }
           </IconButton>
         </TableCell>
-        <TableCell>{target.symbol}</TableCell>
-        <TableCell>{target.gene_id}</TableCell>
-        <TableCell>{target.name}</TableCell>
-        <TableCell>{target.score}</TableCell>
+        <TableCell>{data.target.gene_info.symbol}</TableCell>
+        <TableCell>{data.id}</TableCell>
+        <TableCell>{data.target.gene_info.name}</TableCell>
+        <TableCell>{data.association_score.overall}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>

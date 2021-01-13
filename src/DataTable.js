@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Row from './Row'
 import TableFooter from '@material-ui/core/TableFooter';
 import { TablePagination } from '@material-ui/core';
+import {descending} from "d3-array";
 
 
 class DataTable extends Component {
@@ -16,9 +17,9 @@ class DataTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      targets: props.targets,
+      data: props.data,
       page: 0,
-      rowsPerPage:5
+      rowsPerPage: 5
     };
   }
 
@@ -31,11 +32,12 @@ class DataTable extends Component {
   renderRows() {
     const page = this.state.page;
     const rowsPerPage = this.state.rowsPerPage
-    const targets = this.state.targets
+    const data = this.state.data
+    data.sort((a, b) => descending(a.association_score.overall, b.association_score.overall));
 
     return(
-      targets.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(target => {
-        return(<Row target={target} key={target.gene_id}/>)
+      data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(d => {
+        return(<Row data={d} key={d.id}/>)
       })
     )
   }
@@ -45,6 +47,7 @@ class DataTable extends Component {
     return(
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
+
           <TableHead>
             <TableRow>
               <TableCell />
@@ -63,13 +66,14 @@ class DataTable extends Component {
             <TableRow>
               <TablePagination
                   rowsPerPageOptions={[this.state.rowsPerPage]}
-                  count={this.state.targets.length}
+                  count={this.state.data.length}
                   page={this.state.page}
                   rowsPerPage={this.state.rowsPerPage}
                   onChangePage={this.handleChangePage}
               />
             </TableRow>
           </TableFooter>
+
         </Table>
     </TableContainer>
     )
