@@ -10,12 +10,10 @@ export default class D3Component extends Component {
     componentDidMount(){
       let element = this.ref.current;
       let width = element.getBoundingClientRect().width
-      let height = width
+      let height = width/1.5
       let MARGIN = { TOP: 10, BOTTOM: 10, LEFT: 10, RIGHT: 10 }
-      let buckets = this.props.buckets
-
-      console.log(buckets);
-
+      let buckets = this.props.buckets;
+      
       let g = d3.select(element)
         .append("svg")
           .attr("width", width + MARGIN.LEFT + MARGIN.RIGHT)
@@ -25,25 +23,28 @@ export default class D3Component extends Component {
                   .attr("class", "bar");
 
       // //scales
-      // let y = d3.scaleLinear()
-      //   .range([0, height])
-      //   .domain([0,1])
+      let y = d3.scaleLinear()
+        .range([height, 0])
+        .domain([0,1])
 
-      // let x = d3.scaleBand()
-      //   .range([0, width])
-      //   .domain(Object.keys(buckets))
-      //   .padding(0.2);
+      let x = d3.scaleBand()
+        .range([0, width])
+        .domain(Object.keys(buckets))
+        .padding(0.2);
 
-      // //rects
-      // let rects = g.selectAll("rect")
-      //   .data(buckets)
-      //   .enter()
-      //   .append("rect")
-        // .attr("y", d => y(d.value))
-        // .attr("height", y.bandwidth)
-        // .attr("fill", "red")
-        // .attr("x",  0)
-        // .attr("width", d => x(d.key))
+      //rects
+      let rects = g.selectAll("rect")
+        .data(Object.entries(this.props.buckets))
+        .enter()
+        .append("rect")
+        .attr("x", d => x(d[0]))
+        .attr("width", x.bandwidth)
+        .attr("fill", "grey")
+        .attr("y", d => y(d[1]))
+        .attr("height", d => height - y(d[1]))
+
+      console.log(buckets);
+      console.log(rects)
     
     }
 

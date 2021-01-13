@@ -29,16 +29,21 @@ class Row extends Component {
 
   renderDataViz() {
     const data = this.state.data
-    return(
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <BarChart buckets={data.association_score.datatypes}/>
+    if (this.state.open) {
+      return(
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <BarChart buckets={data.association_score.datatypes}/>
+          </Grid>
+          <Grid item xs={6}>
+            {/* <BarChart buckets={data.association_score.datatypes}/> */}
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <BarChart buckets={data.association_score.datatypes}/>
-        </Grid>
-      </Grid>
-    )
+      )
+    } else {
+      return <div>No data yet</div>
+    }
+  
   }
   
   render() {
@@ -60,7 +65,7 @@ class Row extends Component {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              {this.state.open ? this.renderDataViz: ""}
+              {this.renderDataViz}
             </Box>
           </Collapse>
         </TableCell>
