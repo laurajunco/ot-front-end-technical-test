@@ -11,7 +11,6 @@
   color: #666;
 }
 
-/*csv styles*/
 text {
   font-family: 'Roboto' , sans-serif;
 }
@@ -43,14 +42,12 @@ text {
   font-size: 0.8rem;
 }
 
-/* radar */
 .gridCircle {
   fill: none;
   stroke: #CDCDCD
 }
 
 .gridLabel {
-  
   font-size: 10px;
   fill: #666;
 }

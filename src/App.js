@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./App.css";
-import DataTable from './DataTable';
+import DataTable from './components/DataTable';
 import Typography from '@material-ui/core/Typography';
 
 class App extends Component {
