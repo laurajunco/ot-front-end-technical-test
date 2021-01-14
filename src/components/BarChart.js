@@ -14,8 +14,9 @@ export default class BarChart extends Component {
       let width = element.getBoundingClientRect().width - MARGIN.LEFT - MARGIN.RIGHT
       let height = width - MARGIN.TOP - MARGIN.BOTTOM
       let buckets = this.props.buckets;
+      let vis = {}
 
-      let g = d3.select(element)
+      vis.g = d3.select(element)
         .append("svg")
           .attr("width", width + MARGIN.LEFT + MARGIN.RIGHT)
           .attr("height", height + MARGIN.TOP + MARGIN.BOTTOM)
@@ -39,7 +40,7 @@ export default class BarChart extends Component {
         .ticks(5)
         .tickSize(-width, 0, 0)
 
-      let xAxisGroup = g.append("g")
+      vis.xAxisGroup = vis.g.append("g")
         .attr("transform", `translate(0, ${height})`)
         .attr("class", "xAxis")
         .call(xAxisCall)
@@ -48,12 +49,12 @@ export default class BarChart extends Component {
         .attr("y", 10)
         .style("text-anchor", "end");
 
-      let yAxisGroup = g.append("g")
+      vis.yAxisGroup = vis.g.append("g")
         .attr("class", "yAxis")
         .call(yAxisCall)
        
       //rects
-      let rects = g.selectAll("rect")
+      vis.rects = vis.g.selectAll("rect")
         .data(Object.entries(buckets))
         .enter()
         .append("rect")
@@ -64,7 +65,7 @@ export default class BarChart extends Component {
         .attr("height", d => height - y(d[1]))
 
       //labels
-      let labelY = g.append("text")
+      vis.labelY = vis.g.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", -40)
         .attr("x", 0 - (height / 2))
@@ -73,7 +74,7 @@ export default class BarChart extends Component {
         .style("text-anchor", "middle")
         .text("Score");  
 
-      let labelX = g.append("text")
+      vis.labelX = vis.g.append("text")
         .attr("y", height + MARGIN.BOTTOM - 25)
         .attr("x", (width / 2))
         .attr("dy", "0.5rem")
