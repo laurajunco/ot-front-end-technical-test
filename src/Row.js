@@ -7,6 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import BarChart from './BarChart';
+import RadarChart from './RadarChart';
 import Grid from '@material-ui/core/Grid';
 
 class Row extends Component {
@@ -36,7 +37,7 @@ class Row extends Component {
             <BarChart buckets={data.association_score.datatypes}/>
           </Grid>
           <Grid item xs={6}>
-            {/* <BarChart buckets={data.association_score.datatypes}/> */}
+            <RadarChart buckets={data.association_score.datatypes}/>
           </Grid>
         </Grid>
       )

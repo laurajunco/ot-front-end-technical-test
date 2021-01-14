@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 import Typography from '@material-ui/core/Typography';
 import * as d3 from 'd3'
 
-export default class D3Component extends Component {
+export default class BarChart extends Component {
     constructor(props){
         super(props)
         this.ref = React.createRef();
@@ -15,8 +15,6 @@ export default class D3Component extends Component {
       let height = width - MARGIN.TOP - MARGIN.BOTTOM
       let buckets = this.props.buckets;
 
-      console.log(buckets);
-      
       let g = d3.select(element)
         .append("svg")
           .attr("width", width + MARGIN.LEFT + MARGIN.RIGHT)
@@ -82,9 +80,6 @@ export default class D3Component extends Component {
         .attr("class", "axis-label")
         .style("text-anchor", "middle")
         .text("Data Type");  
-
-      
-
     }
 
     render(){
