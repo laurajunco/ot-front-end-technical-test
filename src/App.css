@@ -5,3 +5,29 @@
   min-height: 100vh;
 }
 
+text {
+  font-family: 'Roboto' , sans-serif;
+}
+
+line, path {
+  stroke: #777;
+  stroke-width: 0.5;
+}
+
+text {
+  fill: #666
+}
+
+.xAxis .tick line {
+  opacity: 0;
+}
+
+.bar {
+  cursor: pointer;
+  fill:#3f51b5;
+  transition: fill .1s ease;
+}
+
+.bar:hover{
+  fill:#ff9800;
+}

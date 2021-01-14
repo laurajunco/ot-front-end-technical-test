@@ -9,7 +9,7 @@ export default class D3Component extends Component {
 
     componentDidMount(){
       let element = this.ref.current;
-      let MARGIN = { TOP: 30, BOTTOM: 50, LEFT: 50, RIGHT: 30 }
+      let MARGIN = { TOP: 45, BOTTOM: 100, LEFT: 60, RIGHT: 30 }
       let width = element.getBoundingClientRect().width - MARGIN.LEFT - MARGIN.RIGHT
       let height = width - MARGIN.TOP - MARGIN.BOTTOM
       let buckets = this.props.buckets;
@@ -34,27 +34,37 @@ export default class D3Component extends Component {
         .domain(Object.keys(buckets))
         .padding(0.2);
 
+      //axis
+      let xAxisCall = d3.axisBottom(x);
+      let yAxisCall = d3.axisLeft(y)
+        .ticks(5)
+        .tickSize(-width, 0, 0)
+
+      let xAxisGroup = g.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .attr("class", "xAxis")
+        .call(xAxisCall)
+        .selectAll("text")
+        .attr("transform", "rotate(-45)")
+        .attr("y", 10)
+        .style("text-anchor", "end");
+
+      let yAxisGroup = g.append("g")
+        .attr("class", "yAxis")
+        .call(yAxisCall)
+       
       //rects
       let rects = g.selectAll("rect")
         .data(Object.entries(this.props.buckets))
         .enter()
         .append("rect")
+        .attr("class", "bar")
         .attr("x", d => x(d[0]))
         .attr("width", x.bandwidth)
-        .attr("fill", "#3f51b5")
         .attr("y", d => y(d[1]))
         .attr("height", d => height - y(d[1]))
 
-      //axis
-      let xAxisCall = d3.axisBottom(x);
-      let yAxisCall = d3.axisLeft(y);
-
-      let xAxisGroup = g.append("g")
-        .attr("transform", `translate(0, ${height})`)
-        .call(xAxisCall); 
-
-      let yAxisGroup = g.append("g")
-        .call(yAxisCall)
+      
 
     }
 
