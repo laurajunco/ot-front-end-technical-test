@@ -1,4 +1,5 @@
 import React , {Component} from 'react';
+import Typography from '@material-ui/core/Typography';
 import * as d3 from 'd3'
 
 export default class D3Component extends Component {
@@ -9,7 +10,7 @@ export default class D3Component extends Component {
 
     componentDidMount(){
       let element = this.ref.current;
-      let MARGIN = { TOP: 45, BOTTOM: 100, LEFT: 60, RIGHT: 30 }
+      let MARGIN = { TOP: 5, BOTTOM: 110, LEFT: 60, RIGHT: 30 }
       let width = element.getBoundingClientRect().width - MARGIN.LEFT - MARGIN.RIGHT
       let height = width - MARGIN.TOP - MARGIN.BOTTOM
       let buckets = this.props.buckets;
@@ -64,14 +65,37 @@ export default class D3Component extends Component {
         .attr("y", d => y(d[1]))
         .attr("height", d => height - y(d[1]))
 
+      //labels
+      let labelY = g.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -40)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "0.5rem")
+        .attr("class", "axis-label")
+        .style("text-anchor", "middle")
+        .text("Score");  
+
+      let labelX = g.append("text")
+        .attr("y", height + MARGIN.BOTTOM - 25)
+        .attr("x", (width / 2))
+        .attr("dy", "0.5rem")
+        .attr("class", "axis-label")
+        .style("text-anchor", "middle")
+        .text("Data Type");  
+
       
 
     }
 
     render(){
         return(
+          <>
+          <Typography variant="body1" align="center" className="graph-title" >
+            Association score vs Data Type
+          </Typography>
           <div ref={this.ref} className="bar-chart">
           </div>
+          </>
         )
     }
 }

@@ -5,6 +5,13 @@
   min-height: 100vh;
 }
 
+.MuiTypography-root.graph-title {
+  margin-top: 1em;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/*csv styles*/
 text {
   font-family: 'Roboto' , sans-serif;
 }
@@ -30,4 +37,8 @@ text {
 
 .bar:hover{
   fill:#ff9800;
+}
+
+.axis-label {
+  font-size: 0.8rem;
 }
