@@ -54,7 +54,7 @@ export default class BarChart extends Component {
        
       //rects
       let rects = g.selectAll("rect")
-        .data(Object.entries(this.props.buckets))
+        .data(Object.entries(buckets))
         .enter()
         .append("rect")
         .attr("class", "bar")
