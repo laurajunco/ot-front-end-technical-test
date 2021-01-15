@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import DataTable from "./components/DataTable.js";
-import Row from "./components/Row.js";
+import DataTable from "../components/DataTable.js";
+import Row from "../components/Row.js";
 
 describe('<DataTable />', () => {
 

@@ -1,6 +1,5 @@
 import React from "react";
-import Row from "./components/Row.js";
-import { shallow } from "enzyme";
+import Row from "../components/Row.js";
 import { render } from '@testing-library/react';
 
 describe('<Row />', () => {
