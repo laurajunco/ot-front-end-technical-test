@@ -51,7 +51,7 @@ class Row extends Component {
     const data = this.state.data
     return(
       <React.Fragment>
-      <TableRow className="row">
+      <TableRow>
         <TableCell>
           <IconButton aria-label="expand row" size="small" onClick={() => this.setOpen(!this.state.open)}>
             {this.state.open ? <RemoveIcon color="primary"/> : <AddIcon color="primary"/> }

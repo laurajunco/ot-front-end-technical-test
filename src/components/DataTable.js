@@ -37,7 +37,7 @@ class DataTable extends Component {
 
     return(
       data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(d => {
-        return(<Row data={d} key={d.id}/>)
+        return(<Row data={d} key={d.id} className="data-row"/>)
       })
     )
   }
