@@ -1,6 +1,6 @@
 import React from "react";
 import Row from "../components/Row.js";
-import { render } from '@testing-library/react';
+import { render } from 'enzyme';
 
 describe('<Row />', () => {
 
@@ -17,11 +17,13 @@ describe('<Row />', () => {
       }
     }
   
-  it("displays row data", () => {
-    const { getByText } = render(<Row data={data} />)
-    expect(getByText(data.target.gene_info.symbol)).toBeInTheDocument()
-    expect(getByText(data.id)).toBeInTheDocument()
-    expect(getByText(data.target.gene_info.name)).toBeInTheDocument()
+
+  it("displays row data", () => {   
+    const wrapper = render(<Row data={data} />)
+    expect(wrapper.text()).toContain(data.target.gene_info.symbol)
+    expect(wrapper.text()).toContain(data.id)
+    expect(wrapper.text()).toContain(data.target.gene_info.name)
+
   });
 
 });

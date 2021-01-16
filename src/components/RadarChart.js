@@ -112,7 +112,7 @@ export default class RadarChart extends Component {
           <Typography variant="body1" align="center" className="graph-title" >
             Association score vs Data Type
           </Typography>
-          <div ref={this.ref} className="bar-chart">
+          <div ref={this.ref} className="radar-chart">
           </div>
           </>
         )
