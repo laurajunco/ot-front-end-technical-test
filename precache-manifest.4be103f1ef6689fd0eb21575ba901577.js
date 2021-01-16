@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "df4ea27ef5fbd8dca5feba14b705fd97",
+    "revision": "eebc8fb104986631527caabb6d068f50",
     "url": "/ot-front-end-technical-test/index.html"
   },
   {
-    "revision": "c704653d827fbf436528",
+    "revision": "5f693ae0984526b7c6a7",
     "url": "/ot-front-end-technical-test/static/css/main.e97af801.chunk.css"
   },
   {
-    "revision": "2d3fc0aaee65275fbdf9",
-    "url": "/ot-front-end-technical-test/static/js/2.c14aa385.chunk.js"
+    "revision": "afc06ece5055a4ce891f",
+    "url": "/ot-front-end-technical-test/static/js/2.b0b6ef4e.chunk.js"
   },
   {
     "revision": "6397acf4c5cafcd591a770ce33fc3e2f",
-    "url": "/ot-front-end-technical-test/static/js/2.c14aa385.chunk.js.LICENSE.txt"
+    "url": "/ot-front-end-technical-test/static/js/2.b0b6ef4e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c704653d827fbf436528",
-    "url": "/ot-front-end-technical-test/static/js/main.57abd441.chunk.js"
+    "revision": "5f693ae0984526b7c6a7",
+    "url": "/ot-front-end-technical-test/static/js/main.6b6227b9.chunk.js"
   },
   {
     "revision": "728bc62a4c2d80560bb1",
